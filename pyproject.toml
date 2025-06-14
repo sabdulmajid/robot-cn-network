@@ -1,0 +1,151 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "robot-cn-network"
+version = "0.1.0"
+description = "Convolutional neural network for robotic image frame classification with sim-based teleoperation"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {file = "LICENSE"}
+authors = [
+    {name = "Ayman", email = "aymanwebsite@outlook.com"},
+]
+keywords = ["robotics", "imitation-learning", "teleoperation", "simulation", "neural-networks"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+    "numpy>=1.24.0",
+    "gymnasium>=0.29.0",
+    "mujoco>=3.0.0",
+    "torch>=2.0.0",
+    "torchvision>=0.15.0",
+    "transformers>=4.30.0",
+    "datasets>=2.14.0",
+    "huggingface-hub>=0.16.0",
+    "wandb>=0.15.0",
+    "opencv-python>=4.8.0",
+    "pillow>=10.0.0",
+    "matplotlib>=3.7.0",
+    "plotly>=5.15.0",
+    "jupyter>=1.0.0",
+    "ipywidgets>=8.0.0",
+    "tqdm>=4.65.0",
+    "scipy>=1.11.0",
+    "scikit-learn>=1.3.0",
+    "imageio>=2.31.0",
+    "imageio-ffmpeg>=0.4.8",
+    "PyYAML>=6.0",
+    "hydra-core>=1.3.0",
+    "omegaconf>=2.3.0",
+    "tensorboard>=2.14.0",
+    "gym-hil>=0.1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+    "black>=23.7.0",
+    "isort>=5.12.0",
+    "flake8>=6.0.0",
+    "mypy>=1.5.0",
+    "pre-commit>=3.3.0",
+]
+
+lerobot = [
+    "lerobot>=0.1.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/ayman/robot-cn-network"
+Repository = "https://github.com/ayman/robot-cn-network"
+Documentation = "https://github.com/ayman/robot-cn-network/README.md"
+Issues = "https://github.com/ayman/robot-cn-network/issues"
+
+[project.scripts]
+robot-teleop = "robot_cn_network.scripts.teleoperation:main"
+robot-train = "robot_cn_network.scripts.train:main"
+robot-eval = "robot_cn_network.scripts.evaluate:main"
+robot-collect = "robot_cn_network.scripts.collect_data:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/robot_cn_network"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/src",
+    "/configs",
+    "/notebooks",
+    "/scripts",
+    "/README.md",
+    "/LICENSE",
+]
+
+[tool.black]
+line-length = 100
+target-version = ['py310']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 100
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+ensure_newline_before_comments = true
+
+[tool.mypy]
+python_version = "3.10"
+check_untyped_defs = true
+disallow_any_generics = true
+disallow_incomplete_defs = true
+disallow_untyped_defs = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "--strict-markers",
+    "--strict-config",
+    "--cov=robot_cn_network",
+    "--cov-report=term-missing",
+    "--cov-report=html",
+    "--cov-report=xml",
+]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "gpu: marks tests that require GPU",
+    "integration: marks tests as integration tests",
+]
