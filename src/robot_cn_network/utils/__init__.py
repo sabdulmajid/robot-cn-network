@@ -16,6 +16,12 @@ except ImportError:
     WANDB_AVAILABLE = False
     wandb = None
 
+try:
+    import plotly
+    PLOTLY_AVAILABLE = True
+except ImportError:
+    PLOTLY_AVAILABLE = False
+
 
 def setup_logging(level: str = "INFO", log_file: Optional[str] = None) -> None:
     logging_config = {
@@ -264,3 +270,11 @@ def print_system_info() -> None:
         print("MPS (Apple Silicon): Available")
     else:
         print("No GPU acceleration available")
+
+
+# Import visualization tools if dependencies are available
+if PLOTLY_AVAILABLE:
+    try:
+        from .visualize import TrainingVisualizer, RobotTrajectoryVisualizer
+    except ImportError:
+        pass

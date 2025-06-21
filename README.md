@@ -100,6 +100,30 @@ Evaluate a trained policy:
 robot-eval --policy-path ./outputs/policies/latest --num-episodes 10
 ```
 
+### 5. Analysis & Visualization
+
+Analyze training results and robot trajectories with interactive visualizations:
+
+```bash
+# Visualize training metrics
+robot-analyze --data-path ./outputs/training/exp_20240401_latest_metrics.json --mode training --interactive
+
+# Visualize robot trajectories
+robot-analyze --data-path ./outputs/evaluation/trajectories --mode trajectory --interactive
+
+# Compare multiple trained policies
+robot-analyze --mode policy-comparison --policy-paths ./outputs/policies/v1 ./outputs/policies/v2 --env-id gym_hil/PandaPickCubeKeyboard-v0
+
+# Visualize action space distribution
+robot-analyze --data-path ./data/demonstrations --mode action-space --interactive
+```
+
+The analysis tool generates interactive visualizations including:
+- Learning curves for training metrics
+- 3D trajectory visualizations
+- Policy comparison charts
+- Action space distribution plots
+
 ## Research Applications
 
 This project is designed for researchers interested in:
