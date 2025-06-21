@@ -49,6 +49,7 @@ dependencies = [
     "hydra-core>=1.3.0",
     "omegaconf>=2.3.0",
     "tensorboard>=2.14.0",
+    "pandas>=2.0.0",
     "gym-hil>=0.1.0",
 ]
 
@@ -78,6 +79,7 @@ robot-teleop = "robot_cn_network.scripts.teleoperation:main"
 robot-train = "robot_cn_network.scripts.train:main"
 robot-eval = "robot_cn_network.scripts.evaluate:main"
 robot-collect = "robot_cn_network.scripts.collect_data:main"
+robot-analyze = "robot_cn_network.scripts.analyze:main"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/robot_cn_network"]
