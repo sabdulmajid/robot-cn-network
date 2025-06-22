@@ -169,10 +169,7 @@ Generate these visualizations using the built-in analysis tools:
 # Generate visualizations from test data
 python tests/test_visualization.py
 
-# Find outputs in the outputs/example_visualizations directory
 ```
-
-For more examples, see [visualization_examples.md](docs/visualization_examples.md).
 
 ## Research Applications
 
