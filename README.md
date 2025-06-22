@@ -39,19 +39,25 @@ git clone --recursive https://github.com/ayman/robot-cn-network.git
 cd robot-cn-network
 ```
 
-2. **Create and activate a virtual environment:**
+2. **Automatic setup (recommended):**
 ```bash
+# Run the setup script which creates a venv and installs all dependencies
+./setup_dev_env.sh
+
+# Activate the virtual environment
+source venv/bin/activate
+```
+
+3. **Manual setup:**
+```bash
+# Create and activate a virtual environment
 python -m venv venv
 source venv/bin/activate  # On macOS/Linux
-```
 
-3. **Install the project:**
-```bash
+# Install the project
 pip install -e .
-```
 
-4. **Install LeRobot integration (optional):**
-```bash
+# Optional: Install LeRobot integration
 pip install -e ".[lerobot]"
 ```
 
@@ -61,6 +67,9 @@ For development and research:
 ```bash
 pip install -e ".[dev]"
 pre-commit install
+
+# Generate example visualizations
+python tests/test_visualization.py
 ```
 
 ## Usage Guide
@@ -123,6 +132,47 @@ The analysis tool generates interactive visualizations including:
 - 3D trajectory visualizations
 - Policy comparison charts
 - Action space distribution plots
+
+## Visualization Gallery
+
+This project includes powerful visualization tools for analyzing training progress, robot trajectories, and action spaces. Here are some examples of the visualizations you can generate:
+
+### Training Progress
+
+The training visualizer provides interactive learning curves showing metrics like loss and accuracy over time:
+
+![Training Learning Curves](docs/images/sample_training_learning_curves.png)
+
+### Robot Trajectories 
+
+Visualize robot end-effector paths in 3D space, with target positions and motion analysis:
+
+```
+# Interactive 3D visualization available in the HTML output
+# docs/sample_robot_trajectory.html
+```
+
+### Action Space Analysis
+
+Understand the distribution and characteristics of robot actions in your dataset:
+
+```
+# Interactive action space visualization available in the HTML output
+# docs/sample_training_action_space.html
+```
+
+### Using the Visualization Tools
+
+Generate these visualizations using the built-in analysis tools:
+
+```bash
+# Generate visualizations from test data
+python tests/test_visualization.py
+
+# Find outputs in the outputs/example_visualizations directory
+```
+
+For more examples, see [visualization_examples.md](docs/visualization_examples.md).
 
 ## Research Applications
 
