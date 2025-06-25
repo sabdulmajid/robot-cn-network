@@ -1,0 +1,31 @@
+# Data collection configuration
+environment:
+  env_id: "gym_hil/PandaPickCubeKeyboard-v0"
+  render_mode: "human"
+  episode_length: 100
+  image_obs: true
+
+collection:
+  num_episodes: 30
+  min_episode_length: 10
+  success_only: false
+  interactive_rating: true
+  data_dir: "./data/demonstrations"
+
+recording:
+  record_video: true
+  video_dir: "./videos/demonstrations"
+  fps: 20
+
+control:
+  use_gamepad: false
+  controller_config: null
+
+quality:
+  min_success_rate: 0.7
+  max_retries: 3
+  save_failed_episodes: false
+
+logging:
+  log_level: "INFO"
+  log_freq: 10
