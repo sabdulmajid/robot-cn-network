@@ -1,0 +1,30 @@
+# Evaluation configuration
+model:
+  model_path: "./outputs/training/best_model.pth"
+  device: "auto"
+
+environment:
+  env_id: "gym_hil/PandaPickCubeBase-v0"
+  render_mode: "human"
+  max_episode_length: 200
+  seed: 42
+
+evaluation:
+  num_episodes: 10
+  deterministic: true
+  record_video: true
+  save_data: false
+
+recording:
+  video_dir: "./videos/evaluation"
+  data_dir: "./data/evaluation"
+  fps: 20
+
+metrics:
+  compute_success_rate: true
+  compute_trajectory_metrics: true
+  save_detailed_results: true
+
+logging:
+  log_level: "INFO"
+  save_logs: true

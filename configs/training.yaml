@@ -1,0 +1,39 @@
+# Training configuration for robot imitation learning
+model:
+  d_model: 256
+  nhead: 8
+  num_encoder_layers: 6
+  num_decoder_layers: 6
+  dim_feedforward: 1024
+  dropout: 0.1
+  action_dim: 7
+  cnn_channels: [32, 64, 128, 256]
+  cnn_kernel_sizes: [7, 5, 3, 3]
+  cnn_strides: [2, 2, 2, 2]
+
+training:
+  batch_size: 32
+  learning_rate: 1e-4
+  num_epochs: 100
+  weight_decay: 1e-4
+  grad_clip_norm: 1.0
+  val_freq: 5
+  save_freq: 10
+
+data:
+  sequence_length: 1
+  action_horizon: 10
+  train_ratio: 0.8
+  num_workers: 0
+
+environment:
+  env_id: "gym_hil/PandaPickCubeBase-v0"
+  episode_length: 200
+  image_size: [224, 224]
+  camera_names: ["front", "wrist"]
+
+logging:
+  log_level: "INFO"
+  use_wandb: false
+  wandb_project: "robot-cn-network"
+  log_freq: 100
